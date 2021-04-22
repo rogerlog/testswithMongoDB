@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import io.github.rogerlog.TestsMongoDB.domain.User;
 import io.github.rogerlog.TestsMongoDB.repository.UserRepository;
 import io.github.rogerlog.TestsMongoDB.services.exception.ObjectNotFoundException;
+import io.github.rogerlog.TestsMongoDB.dto.UserDTO;
 
 @Service
 public class UserService {
@@ -27,5 +28,13 @@ public class UserService {
             throw new ObjectNotFoundException("Objeto não encontrado");
         }
         return user;
+    }
+
+    public User insert(User obj) {
+        return repo.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto) {
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 }
