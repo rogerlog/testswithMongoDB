@@ -65,7 +65,7 @@ public class User implements Serializable {
         this.posts = posts;
     }
 
-    
+
 
     public void setEmail(String email) {
         this.email = email;
