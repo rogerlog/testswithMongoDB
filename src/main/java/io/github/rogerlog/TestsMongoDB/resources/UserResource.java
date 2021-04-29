@@ -13,6 +13,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.github.rogerlog.TestsMongoDB.domain.Post;
+
 @RestController
 @RequestMapping(value="/users")
 public class UserResource {
@@ -53,5 +55,11 @@ public class UserResource {
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @RequestMapping(value="/{id}/posts", method=RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
     }
 }
